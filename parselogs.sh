@@ -42,14 +42,14 @@ function parse_today_staging() {
 
 function parse_yesterday_production() {
   FILE_NAME="yesterday"
-  cat_all "`ls *.log | grep -vi staging`" | grep "`date +"%d/%b/%Y" --date="yesterday"`" >> /tmp/$FILE_NAME.log
+  cat_all "`ls *.log *.log.1 | grep -vi staging`" | grep "`date +"%d/%b/%Y" --date="yesterday"`" >> /tmp/$FILE_NAME.log
   goacces "$FILE_NAME.log" >> $HTML_PATH/$FILE_NAME.html
   rm /tmp/$FILE_NAME.log
 }
 
 function parse_yesterday_staging() {
   FILE_NAME="staging_yesterday"
-  cat_all "`ls *.log | grep -i staging`" | grep "`date +"%d/%b/%Y" --date="yesterday"`" >> /tmp/$FILE_NAME.log
+  cat_all "`ls *.log *.log.1 | grep -i staging`" | grep "`date +"%d/%b/%Y" --date="yesterday"`" >> /tmp/$FILE_NAME.log
   goacces "$FILE_NAME.log" >> $HTML_PATH/$FILE_NAME.html
   rm /tmp/$FILE_NAME.log
 }
