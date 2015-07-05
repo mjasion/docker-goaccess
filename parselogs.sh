@@ -6,7 +6,7 @@ rm $HTML_PATH/*.html
 
 function pase_all_logs() {
   for file in `find *.log -size +0`; do
-    docker run -v /var/log/nginx:/logs goaccess:latest goaccess --no-progress -f /logs/$file -a > $HTML_PATH/"$file".html
+    docker run --rm -v /var/log/nginx:/logs goaccess:latest goaccess --no-progress -f /logs/$file -a > $HTML_PATH/"$file".html
   done
 }
 
@@ -23,7 +23,7 @@ function zcat_all() {
 }
 
 function goacces() {
-  docker run -v /tmp:/logs goaccess:latest goaccess --no-progress -f /logs/$1 -a
+  docker run --rm -v /tmp:/logs goaccess:latest goaccess --no-progress -f /logs/$1 -a
 }
 
 function parse_today_production() {
